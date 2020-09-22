@@ -1,0 +1,36 @@
+﻿@model CarSetViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="@Model.Car.Name" class="control-label"></label>
+    <input asp-for="@Model.Car.Name" class="form-control" />
+    <span asp-validation-for="@Model.Car.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="@Model.Car.Description" class="control-label"></label>
+    <textarea asp-for="@Model.Car.Description" class="form-control"></textarea>
+    <span asp-validation-for="@Model.Car.Description" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="@Model.Car.Year" class="control-label"></label>
+    <input asp-for="@Model.Car.Year" class="form-control" />
+    <span asp-validation-for="@Model.Car.Year" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="@Model.Car.IsDeleted" /> @Html.DisplayNameFor(model => model.Car.IsDeleted)
+    </label>
+</div>
+
+<div class="form-group">
+    <label class="edit-label">Producer <span class="required"></span></label>
+    <div>
+
+        @Html.DropDownListFor(
+             x => x.Car.ProducerId,
+             new SelectList(Model.Producers, "Id", "Name", Model.Car.ProducerId),
+             "-- Select --"
+        )
+    </div>
+    <span asp-validation-for="@Model.Car.ProducerId" class="text-danger"></span>
+</div>
